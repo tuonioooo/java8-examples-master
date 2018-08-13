@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
                      p -> p.age,
                      p -> p.name,
                      (name1, name2) -> name1 + ";" + name2)：toMap转换map示例test6
+*                .map(Person::age).collect(Collectors.toList())：取出Person的age属性，返回list，示例test10
  */
 public class Stream10 {
 
@@ -27,6 +28,14 @@ public class Stream10 {
 
         Person(String name, int age) {
             this.name = name;
+            this.age = age;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
             this.age = age;
         }
 
@@ -49,10 +58,11 @@ public class Stream10 {
 //        test3(persons);
 //        test4(persons);
 //        test5(persons);
-        test6(persons);
+//        test6(persons);
 //        test7(persons);
 //        test8(persons);
 //        test9(persons);
+        test10(persons);
     }
 
     /**
@@ -191,5 +201,12 @@ public class Stream10 {
                 .collect(personNameCollector);
 
         System.out.println(names);  // MAX | PETER | PAMELA | DAVID
+    }
+
+    public static void test10(List<Person> persons){
+
+        List<Integer> list = persons.stream().map(Person::getAge).collect(Collectors.toList());
+
+        System.out.println("list = " + list);
     }
 }

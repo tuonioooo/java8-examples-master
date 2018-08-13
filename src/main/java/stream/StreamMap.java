@@ -2,6 +2,7 @@ package stream;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
  * info:
  *       Stream：
  *              map专项练习
+ *              Comparator.comparing求最小值、最大值
  *
  */
 public class StreamMap {
@@ -35,6 +37,11 @@ public class StreamMap {
 
         System.out.println("===========================listToMap=============================");
 
+        System.out.println("===========================comparator=============================");
+
+        comparator1();
+
+        comparator2();
     }
 
 
@@ -78,6 +85,18 @@ public class StreamMap {
         Integer sum2 = Stream.of(1,2,3,4,5,6).reduce(0, ( sum, e ) -> sum + e);
         System.out.println("sum2 = " + sum2);
     }
+    //Comparator求最小值
+    private static void comparator1(){
+        Integer sum3 = Stream.of(1,2,3,4,5,6).min(Comparator.comparing(num -> num)).get();
+        System.out.println("sum3 = " + sum3);
+    }
+
+    //Comparator求最大值
+    private static void comparator2(){
+        Integer sum3 = Stream.of(1,2,3,4,5,6).max(Comparator.comparing(num -> num)).get();
+        System.out.println("sum3 = " + sum3);
+    }
+
     //IntStream.sum()
     private static void intStreamToSum(){
         Integer intStreamToSum = Stream.of(1,2,3,4,5,6).mapToInt( x-> x ).sum();
